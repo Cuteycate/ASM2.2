@@ -1,0 +1,7 @@
+C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\bin\Debug\Nhom11_ASM2.2.exe.config
+C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\bin\Debug\Nhom11_ASM2.2.exe
+C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\bin\Debug\Nhom11_ASM2.2.pdb
+C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.exe
+C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.pdb
