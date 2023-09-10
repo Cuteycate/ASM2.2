@@ -1,0 +1,14 @@
+C:\Users\duyth\source\repos\bai4\bai4\obj\Debug\net6.0\bai4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\duyth\source\repos\bai4\bai4\obj\Debug\net6.0\bai4.AssemblyInfoInputs.cache
+C:\Users\duyth\source\repos\bai4\bai4\obj\Debug\net6.0\bai4.AssemblyInfo.cs
+C:\Users\duyth\source\repos\bai4\bai4\obj\Debug\net6.0\bai4.csproj.CoreCompileInputs.cache
+C:\Users\duyth\source\repos\bai4\bai4\bin\Debug\net6.0\bai4.exe
+C:\Users\duyth\source\repos\bai4\bai4\bin\Debug\net6.0\bai4.deps.json
+C:\Users\duyth\source\repos\bai4\bai4\bin\Debug\net6.0\bai4.runtimeconfig.json
+C:\Users\duyth\source\repos\bai4\bai4\bin\Debug\net6.0\bai4.dll
+C:\Users\duyth\source\repos\bai4\bai4\bin\Debug\net6.0\bai4.pdb
+C:\Users\duyth\source\repos\bai4\bai4\obj\Debug\net6.0\bai4.dll
+C:\Users\duyth\source\repos\bai4\bai4\obj\Debug\net6.0\refint\bai4.dll
+C:\Users\duyth\source\repos\bai4\bai4\obj\Debug\net6.0\bai4.pdb
+C:\Users\duyth\source\repos\bai4\bai4\obj\Debug\net6.0\bai4.genruntimeconfig.cache
+C:\Users\duyth\source\repos\bai4\bai4\obj\Debug\net6.0\ref\bai4.dll

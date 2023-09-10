@@ -1,0 +1,4 @@
+C:\Users\duyth\source\repos\bai4\Bai6\obj\Debug\net6.0\Bai6.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\duyth\source\repos\bai4\Bai6\obj\Debug\net6.0\Bai6.AssemblyInfoInputs.cache
+C:\Users\duyth\source\repos\bai4\Bai6\obj\Debug\net6.0\Bai6.AssemblyInfo.cs
+C:\Users\duyth\source\repos\bai4\Bai6\obj\Debug\net6.0\Bai6.csproj.CoreCompileInputs.cache
