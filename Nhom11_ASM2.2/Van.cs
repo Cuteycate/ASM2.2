@@ -17,16 +17,15 @@ namespace Nhom11_ASM2._2
             this.trongtaixe = trongtaixe;
         }
         public Van() { }
-        public void Nhap()
+        public void NhapVan()
         {
             base.Nhap();
             Console.Write("Nhap trong tai cua xe tai:");
             trongtaixe = Convert.ToInt32(Console.ReadLine());
         }
-        public void Xuat()
+        public override void Xuat()
         {
-            base.Xuat(); 
-            Console.Write("\t trong tai xe {2}",trongtaixe);
+            base.Xuat(); Console.Write("\t trong tai xe {0}\n", trongtaixe);
         }
 
     }

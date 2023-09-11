@@ -56,19 +56,21 @@ namespace Nhom11_ASM2._2
         }
         static void ThemDanhSachXeOto(List<Xe> CarList)
         {
+            Cars car;
             Console.WriteLine("Nhap thong tin xe oto");
-            Xe car = new Cars();
-            car.Nhap();
+            car = new Cars();
+            car.NhapCar();
             CarList.Add(car);
             Console.WriteLine("Them xe oto thanh cong !");
         }
         static void ThemDanhSachXeTai(List<Xe> CarList)
         {
+            Van van;
             Console.WriteLine("Nhap thong tin xe tai");
-            Xe van = new Van();
-            van.Nhap();
+            van = new Van();
+            van.NhapVan();
             CarList.Add(van);
-            Console.WriteLine("Them xe oto thanh cong !");
+            Console.WriteLine("Them xe tai thanh cong !");
         }
         static void XuatDanhSach(List<Xe> CarList)
         {
@@ -92,7 +94,7 @@ namespace Nhom11_ASM2._2
         static void XuatDanhSachVan(List<Xe> CarList)
         {
             Console.WriteLine("Danh sach xe tai :");
-            foreach(Xe van in CarList)
+            foreach (Xe van in CarList)
             {
                 if (van is Van)
                 {
@@ -102,63 +104,74 @@ namespace Nhom11_ASM2._2
         }
         static void TimXeNhieuChoNgoiNhat(List<Xe> CarList)
         {
+            int count = 0;
             try
             {
-                var MaxChoNgoi = CarList.Where(s => s is Cars).Max(s=>(s as Cars).sochongoi).ToString();
+                var MaxChoNgoi = CarList.Where(s => s is Cars).Max(s => (s as Cars).sochongoi).ToString();
                 foreach (Cars car in CarList)
                 {
                     if (car.sochongoi == Convert.ToInt32(MaxChoNgoi))
                     {
                         car.Xuat();
+                        count++;
                     }
                 }
             }
-            catch(Exception ex)
+
+            catch (Exception)
             {
-                Console.WriteLine("Khong co xe o to nao trong danh sach");
+                if (count == 0)
+                {
+                    Console.WriteLine("Khong co xe o to nao trong danh sach");
+                }
             }
         }
         static void sapxeptangdan(List<Xe> CarList)
         {
             var DanhSachVan = CarList.Where(s => s is Van).ToList();
-            var sapxepvan = DanhSachVan.OrderBy(s=>(s as Van).trongtaixe).ToList();
+            var sapxepvan = DanhSachVan.OrderBy(s => (s as Van).trongtaixe).ToList();
             XuatDanhSachVan(sapxepvan);
         }
         static void sodep(List<Xe> CarList)
         {
-            int count =0;
-            String temp;
-            var DanhSachXe = CarList.Where(s => s is Xe).ToList();
-            var SoSeri = DanhSachXe.Select(s => (s as Xe).seridangky).ToList();
-            for (int i = 0; i < SoSeri.Count; i++)
-            {
-                temp = SoSeri[i].ToString();
-                while (temp.Length > 0)
+            /*    int count =0;
+                String temp;
+                var DanhSachXe = CarList.Where(s => s is Xe).ToList();
+                var SoSeri = DanhSachXe.Select(s => (s as Xe).seridangky).ToList();
+                for (int i = 0; i < SoSeri.Count; i++)
                 {
-                    count = 0;
-                    for (int j = 0; j < temp.Length; j++)
+                    temp = SoSeri[i].ToString();
+                    while (temp.Length > 0)
                     {
-                        if (temp[0] == temp[j])
+                        count = 0;
+                        for (int j = 0; j < temp.Length; j++)
                         {
-                            count++;
-                        }
-                    }
-                    temp = temp.Replace(temp[0].ToString(), string.Empty);
-                    if (count >= 4)
-                    {
-                        foreach (Xe xe in CarList)
-                        {
-                                if (xe.seridangky == SoSeri[i].ToString())
+                            if (temp[0] == temp[j])
                             {
-                                xe.Xuat();
+                                count++;
                             }
-                               
+                        }
+                        temp = temp.Replace(temp[0].ToString(), string.Empty);
+                        if (count >= 4)
+                        {
+                            foreach (Xe xe in CarList)
+                            {
+                                    if (xe.seridangky == SoSeri[i].ToString())
+                                {
+                                    xe.Xuat();
+                                }
+
+                            }
                         }
                     }
                 }
+            }*/
+            var bienSoXeDep1 = CarList.Where(v => v.seridangky.Count(c => c == v.seridangky[1]) >= 4).Select(v => v).ToList();
+            foreach (var s in bienSoXeDep1)
+            {
+                Console.WriteLine(s.matinh + " - " + s.seridangky);
             }
         }
-
     }
 }
         

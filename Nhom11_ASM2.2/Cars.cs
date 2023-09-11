@@ -23,7 +23,7 @@ namespace Nhom11_ASM2._2
         {
 
         }
-        public void Nhap()
+        public void NhapCar()
         {
             base.Nhap();
             Console.Write("Nhap so cho ngoi cua xe:");
@@ -45,9 +45,9 @@ namespace Nhom11_ASM2._2
                 }
             } while (choice > 1);
         }
-        public void Xuat()
+        public override void Xuat()
         {
-            Console.WriteLine("\t so cho ngoi {2}\t kdvt : {3}",sochongoi,kinhdoanhvantai);
+            base.Xuat(); Console.Write("\t so cho ngoi {0}\t kdvt : {1}\n", sochongoi, kinhdoanhvantai);
         }
     }
 }

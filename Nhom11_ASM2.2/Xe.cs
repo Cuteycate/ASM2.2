@@ -62,9 +62,9 @@ namespace Nhom11_ASM2._2
                 }
             } while (seridangky.Length > 5);
         }
-        public void Xuat()
+        public virtual void Xuat()
         {
-            Console.WriteLine("Ngay san xuat :" + ngaysanxuat + "\tbien so xe: {0}-{1}", matinh, seridangky);
+            Console.Write("Ngay san xuat :" + ngaysanxuat + "\tbien so xe: {0}-{1}", matinh, seridangky);
          }
     }
 }
