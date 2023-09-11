@@ -11,8 +11,7 @@ namespace Nhom11_ASM2._2
     {
         static void Main(string[] args)
         {
-            List<Cars> listc = new List<Cars>();
-            List<Van> listv = new List<Van>();
+            List<Xe> CarList = new List<Xe>();
             bool exit = false;
             while (!exit)
             {
@@ -32,18 +31,18 @@ namespace Nhom11_ASM2._2
                 switch (chon)
                 {
                     case "1":
-                        ThemDanhSachXeOto(listc); break;
+                        ThemDanhSachXeOto(CarList); break;
                     case "2":
-                        ThemDanhSachXeTai(listv); break;
+                        ThemDanhSachXeTai(CarList); break;
                     case "3":
-                        XuatDanhSach(listc, listv); break;
+                        XuatDanhSach(CarList); break;
                     case "4":
-                        TimXeNhieuChoNgoiNhat(listc);
+                        TimXeNhieuChoNgoiNhat(CarList);
                         break;
                     case "5":
-                        sapxeptangdan(listv); break;
+                        sapxeptangdan(CarList); break;
                     case "6":
-                        sodep(listv); break;
+                        sodep(CarList); break;
                     case "0":
                         exit = true;
                         Console.WriteLine("Ket thuc chuong trinh.");
@@ -55,49 +54,58 @@ namespace Nhom11_ASM2._2
                 Console.WriteLine();
             }
         }
-        static void ThemDanhSachXeOto(List<Cars> listc)
+        static void ThemDanhSachXeOto(List<Xe> CarList)
         {
             Console.WriteLine("Nhap thong tin xe oto");
-            Cars car = new Cars();
+            Xe car = new Cars();
             car.Nhap();
-            listc.Add(car);
+            CarList.Add(car);
             Console.WriteLine("Them xe oto thanh cong !");
         }
-        static void ThemDanhSachXeTai(List<Van> listv)
+        static void ThemDanhSachXeTai(List<Xe> CarList)
         {
             Console.WriteLine("Nhap thong tin xe tai");
-            Van van = new Van();
+            Xe van = new Van();
             van.Nhap();
-            listv.Add(van);
+            CarList.Add(van);
             Console.WriteLine("Them xe oto thanh cong !");
         }
-        static void XuatDanhSach(List<Cars> listc, List<Van> Listv)
+        static void XuatDanhSach(List<Xe> CarList)
         {
             Console.WriteLine("Danh sach xe o to :");
-            foreach (Cars car in listc)
+            foreach (Xe car in CarList)
             {
-                car.Xuat();
+                if (car is Cars)
+                {
+                    car.Xuat();
+                }
             }
             Console.WriteLine("Danh sach xe tai :");
-            foreach (Van van in Listv)
+            foreach (Xe van in CarList)
             {
-                van.Xuat();
+                if (van is Van)
+                {
+                    van.Xuat();
+                }
             }
         }
-        static void XuatDanhSachVan(List<Van> Listv)
+        static void XuatDanhSachVan(List<Xe> CarList)
         {
             Console.WriteLine("Danh sach xe tai :");
-            foreach(Van van in Listv)
+            foreach(Xe van in CarList)
             {
-                van.Xuat();
+                if (van is Van)
+                {
+                    van.Xuat();
+                }
             }
         }
-        static void TimXeNhieuChoNgoiNhat(List<Cars> listc)
+        static void TimXeNhieuChoNgoiNhat(List<Xe> CarList)
         {
             try
             {
-                var MaxChoNgoi = listc.Max(s => s.sochongoi).ToString();
-                foreach (Cars car in listc)
+                var MaxChoNgoi = CarList.Where(s => s is Cars).Max(s=>(s as Cars).sochongoi).ToString();
+                foreach (Cars car in CarList)
                 {
                     if (car.sochongoi == Convert.ToInt32(MaxChoNgoi))
                     {
@@ -110,16 +118,18 @@ namespace Nhom11_ASM2._2
                 Console.WriteLine("Khong co xe o to nao trong danh sach");
             }
         }
-        static void sapxeptangdan(List<Van> listv)
+        static void sapxeptangdan(List<Xe> CarList)
         {
-            var SapXepvan = listv.OrderBy(s=>s.trongtaixe).ToList();
-            XuatDanhSachVan(SapXepvan);
+            var DanhSachVan = CarList.Where(s => s is Van).ToList();
+            var sapxepvan = DanhSachVan.OrderBy(s=>(s as Van).trongtaixe).ToList();
+            XuatDanhSachVan(sapxepvan);
         }
-        static void sodep(List<Van> listv)
+        static void sodep(List<Xe> CarList)
         {
             int count =0;
             String temp;
-            var SoSeri = listv.Select(s => s.seridangky).ToList();
+            var DanhSachXe = CarList.Where(s => s is Xe).ToList();
+            var SoSeri = DanhSachXe.Select(s => (s as Xe).seridangky).ToList();
             for (int i = 0; i < SoSeri.Count; i++)
             {
                 temp = SoSeri[i].ToString();
@@ -136,12 +146,13 @@ namespace Nhom11_ASM2._2
                     temp = temp.Replace(temp[0].ToString(), string.Empty);
                     if (count >= 4)
                     {
-                        foreach (Van van in listv)
+                        foreach (Xe xe in CarList)
                         {
-                            if (van.seridangky == SoSeri[i].ToString())
+                                if (xe.seridangky == SoSeri[i].ToString())
                             {
-                                van.Xuat();
+                                xe.Xuat();
                             }
+                               
                         }
                     }
                 }

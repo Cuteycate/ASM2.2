@@ -26,6 +26,45 @@ namespace Nhom11_ASM2._2
         {
 
         }
-
+        public void Nhap()
+        {
+            bool Choice;
+            do
+            {
+                try
+                {
+                    Choice = true;
+                    Console.WriteLine("Nhap ngay thang nam san xuat : (vd : 23/03/2003)");
+                    ngaysanxuat = DateTime.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Thoi gian khong hop le !");
+                    Choice = false;
+                }
+            } while (Choice == false);
+            do
+            {
+                Console.Write("Nhap ma tinh (4 chu)");
+                matinh = Console.ReadLine();
+                if (matinh.Length > 4)
+                {
+                    Console.WriteLine("Ma tinh phai co it nhat 4 chu so");
+                }
+            } while (matinh.Length > 4);
+            do
+            {
+                Console.Write("Nhap so seri dang ky:");
+                seridangky = Console.ReadLine();
+                if (seridangky.Length > 5)
+                {
+                    Console.WriteLine("so seri dang ky phai co it nhat 4 chu so");
+                }
+            } while (seridangky.Length > 5);
+        }
+        public void Xuat()
+        {
+            Console.WriteLine("Ngay san xuat :" + ngaysanxuat + "\tbien so xe: {0}-{1}", matinh, seridangky);
+         }
     }
 }
