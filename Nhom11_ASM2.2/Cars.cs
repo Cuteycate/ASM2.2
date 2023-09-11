@@ -25,8 +25,21 @@ namespace Nhom11_ASM2._2
         }
         public void Nhap()
         {
-                Console.WriteLine("Nhap ngay thang nam san xuat : (vd : 23/03/2003)");
-                ngaysanxuat = DateTime.Parse(Console.ReadLine());         
+            bool Choice;
+            do
+            {
+                try
+                {
+                    Choice = true;  
+                    Console.WriteLine("Nhap ngay thang nam san xuat : (vd : 23/03/2003)");
+                    ngaysanxuat = DateTime.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Thoi gian khong hop le !");
+                    Choice = false;
+                }
+            }while(Choice == false);
             do
             {
                 Console.Write("Nhap ma tinh (4 chu)");

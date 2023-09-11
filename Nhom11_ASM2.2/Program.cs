@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace Nhom11_ASM2._2
 {
@@ -36,6 +37,13 @@ namespace Nhom11_ASM2._2
                         ThemDanhSachXeTai(listv); break;
                     case "3":
                         XuatDanhSach(listc, listv); break;
+                    case "4":
+                        TimXeNhieuChoNgoiNhat(listc);
+                        break;
+                    case "5":
+                        sapxeptangdan(listv); break;
+                    case "6":
+                        sodep(listv); break;
                     case "0":
                         exit = true;
                         Console.WriteLine("Ket thuc chuong trinh.");
@@ -76,6 +84,70 @@ namespace Nhom11_ASM2._2
                 van.Xuat();
             }
         }
+        static void XuatDanhSachVan(List<Van> Listv)
+        {
+            Console.WriteLine("Danh sach xe tai :");
+            foreach(Van van in Listv)
+            {
+                van.Xuat();
+            }
+        }
+        static void TimXeNhieuChoNgoiNhat(List<Cars> listc)
+        {
+            try
+            {
+                var MaxChoNgoi = listc.Max(s => s.sochongoi).ToString();
+                foreach (Cars car in listc)
+                {
+                    if (car.sochongoi == Convert.ToInt32(MaxChoNgoi))
+                    {
+                        car.Xuat();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Khong co xe o to nao trong danh sach");
+            }
+        }
+        static void sapxeptangdan(List<Van> listv)
+        {
+            var SapXepvan = listv.OrderBy(s=>s.trongtaixe).ToList();
+            XuatDanhSachVan(SapXepvan);
+        }
+        static void sodep(List<Van> listv)
+        {
+            int count =0;
+            String temp;
+            var SoSeri = listv.Select(s => s.seridangky).ToList();
+            for (int i = 0; i < SoSeri.Count; i++)
+            {
+                temp = SoSeri[i].ToString();
+                while (temp.Length > 0)
+                {
+                    count = 0;
+                    for (int j = 0; j < temp.Length; j++)
+                    {
+                        if (temp[0] == temp[j])
+                        {
+                            count++;
+                        }
+                    }
+                    temp = temp.Replace(temp[0].ToString(), string.Empty);
+                    if (count >= 4)
+                    {
+                        foreach (Van van in listv)
+                        {
+                            if (van.seridangky == SoSeri[i].ToString())
+                            {
+                                van.Xuat();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
         
