@@ -291,30 +291,25 @@ namespace Nhom11_ASM2._2
                 int ThoiGianDangKiem = 0;
                 var totalmonths = ( DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
                 Console.WriteLine(totalmonths);
+
                     if (totalmonths <= 84)
-                    {
-                        ThoiGianDangKiem = totalmonths + ThoiGianDangKiemXeReturn(car);
+                    {   int ThoiGianTemp = ThoiGianDangKiemXeReturn(car);
+                        ThoiGianDangKiem = totalmonths - ( totalmonths % ThoiGianDangKiemXeReturn(car)) + ThoiGianDangKiemXeReturn(car);
                         Console.WriteLine(ThoiGianDangKiem);
-                      }
+                        Console.WriteLine(ThoiGianTemp);
+                    }
                     if (totalmonths > 84)
                     {
-                            temp1 = totalmonths % ThoiGianDangKiemXeReturn(car);
+                            temp1 = totalmonths % (ThoiGianDangKiemXeReturn(car)-6);
 
                             Console.WriteLine(temp1);
                             
-                            ThoiGianDangKiem = totalmonths  + ThoiGianDangKiemXeReturn(car) - temp1;
+                            ThoiGianDangKiem = totalmonths  + (ThoiGianDangKiemXeReturn(car)-6) - temp1;
                            
-
-                                         
-
-
                             Console.WriteLine(ThoiGianDangKiem) ;
                             Console.WriteLine(temp1);
                         
-                    }
-
-              
-
+                    }           
                 car.Xuat();
                 // Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiemXe);
                  
@@ -375,10 +370,25 @@ namespace Nhom11_ASM2._2
                 int ThoiGianDangKiem = 0;
                 var totalmonths = (DateTime.Now.Month - van.ngaysanxuat.Month + 12 * (DateTime.Now.Year - van.ngaysanxuat.Year));
                 Console.WriteLine(totalmonths);
-                int temp1 = totalmonths % ThoiGianKiemDinhVanReTurn(van);
-                Console.WriteLine(temp1);
-                ThoiGianDangKiem = totalmonths + ThoiGianKiemDinhVanReTurn(van) - temp1;
-                Console.WriteLine(ThoiGianDangKiem);
+               // int temp1 = totalmonths % ThoiGianKiemDinhVanReTurn(van);
+               // Console.WriteLine(temp1);
+               // ThoiGianDangKiem = totalmonths + ThoiGianKiemDinhVanReTurn(van) - temp1;
+               // Console.WriteLine(ThoiGianDangKiem);
+
+                if (totalmonths <= 240)
+                {
+                    Console.WriteLine(totalmonths);
+                    int temp1 = totalmonths % ThoiGianKiemDinhVanReTurn(van);
+                    Console.WriteLine(temp1);
+                    ThoiGianDangKiem = totalmonths + ThoiGianKiemDinhVanReTurn(van) - temp1;
+                }
+                else
+                {
+                    Console.WriteLine(totalmonths);
+                    int temp1 = totalmonths % (ThoiGianKiemDinhVanReTurn(van) -3 );
+                    Console.WriteLine(temp1);
+                    ThoiGianDangKiem = totalmonths + (ThoiGianKiemDinhVanReTurn(van)- 3) - temp1;
+                }
 
                 van.Xuat();
                // Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiem);
@@ -414,16 +424,16 @@ namespace Nhom11_ASM2._2
                     {
                         ThoiGianDinhKy = 12;
                     }
-                    else
-                    
+                    else                 
                     {
                         ThoiGianDinhKy = 12;
 
                     }
-                    if ( totalmonths > 84)
+
+                   /* if ( totalmonths > 84)
                     {
-                        ThoiGianDinhKy = 6;
-                    }
+                       // ThoiGianDinhKy = 6;
+                    } */
                 }
 
                 return ThoiGianDinhKy;
@@ -447,7 +457,7 @@ namespace Nhom11_ASM2._2
                 }
                 else
                 {
-                    ThoiGianDinhKy = 3;
+                    ThoiGianDinhKy = 6;
                 }
             }
 
