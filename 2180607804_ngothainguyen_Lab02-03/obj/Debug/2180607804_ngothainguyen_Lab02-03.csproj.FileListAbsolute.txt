@@ -1,0 +1,10 @@
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\bin\Debug\2180607804_ngothainguyen_Lab02-03.exe.config
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\bin\Debug\2180607804_ngothainguyen_Lab02-03.exe
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\bin\Debug\2180607804_ngothainguyen_Lab02-03.pdb
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\obj\Debug\2180607804_ngothainguyen_Lab02-03.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\obj\Debug\_2180607804_ngothainguyen_Lab02_03.Properties.Resources.resources
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\obj\Debug\2180607804_ngothainguyen_Lab02-03.csproj.GenerateResource.cache
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\obj\Debug\2180607804_ngothainguyen_Lab02-03.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\obj\Debug\2180607804_ngothainguyen_Lab02-03.exe
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\obj\Debug\2180607804_ngothainguyen_Lab02-03.pdb
+C:\Users\Administrator\source\repos\2180607804_ngothainguyen_Lab02-03\2180607804_ngothainguyen_Lab02-03\obj\Debug\_2180607804_ngothainguyen_Lab02_03.Form1.resources

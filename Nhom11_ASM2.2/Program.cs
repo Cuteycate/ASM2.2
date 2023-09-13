@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
@@ -34,20 +36,32 @@ namespace Nhom11_ASM2._2
                 switch (chon)
                 {
                     case "1":
-                        ThemDanhSachXeOto(CarList); break;
+                        ThemDanhSachXeOto(CarList); 
+                        break;
                     case "2":
-                        ThemDanhSachXeTai(CarList); break;
+                        ThemDanhSachXeTai(CarList);
+                        break;
                     case "3":
-                        XuatDanhSach(CarList); break;
+                        XuatDanhSach(CarList); 
+                        break;
                     case "4":
                         TimXeNhieuChoNgoiNhat(CarList);
                         break;
                     case "5":
-                        sapxeptangdan(CarList); break;
+                        sapxeptangdan(CarList);
+                        break;
                     case "6":
-                        sodep(CarList); break;
+                        sodep(CarList); 
+                        break;
                     case "7":
-                        ThoiGianDangKiem(CarList); break;
+                        TienThoiGianDangKiem(CarList);
+                        break;
+                    case "8":
+                        ThoiGianDangkiemDinhKySapToiCuaCars(CarList);
+                        break;
+                    case "9":
+                        TongTien(CarList);
+                        break;
                     case "0":
                         exit = true;
                         Console.WriteLine("Ket thuc chuong trinh.");
@@ -59,6 +73,8 @@ namespace Nhom11_ASM2._2
                 Console.WriteLine();
             }
         }
+
+        //------------------------------------------------------------------------------------------------------------------------
         static void ThemDanhSachXeOto(List<Xe> CarList)
         {
             Cars car;
@@ -68,6 +84,9 @@ namespace Nhom11_ASM2._2
             CarList.Add(car);
             Console.WriteLine("Them xe oto thanh cong !");
         }
+
+        //------------------------------------------------------------------------------------------------------------------------
+
         static void ThemDanhSachXeTai(List<Xe> CarList)
         {
             Van van;
@@ -77,6 +96,8 @@ namespace Nhom11_ASM2._2
             CarList.Add(van);
             Console.WriteLine("Them xe tai thanh cong !");
         }
+
+        //------------------------------------------------------------------------------------------------------------------------
         static void XuatDanhSach(List<Xe> CarList)
         {
             Console.WriteLine("Danh sach xe o to :");
@@ -96,6 +117,9 @@ namespace Nhom11_ASM2._2
                 }
             }
         }
+
+        //------------------------------------------------------------------------------------------------------------------------
+
         static void XuatDanhSachVan(List<Xe> CarList)
         {
             Console.WriteLine("Danh sach xe tai :");
@@ -107,6 +131,9 @@ namespace Nhom11_ASM2._2
                 }
             }
         }
+
+        //------------------------------------------------------------------------------------------------------------------------
+
         static void TimXeNhieuChoNgoiNhat(List<Xe> CarList)
         {
             int count = 0;
@@ -131,111 +158,57 @@ namespace Nhom11_ASM2._2
                 }
             }
         }
+
+        //------------------------------------------------------------------------------------------------------------------------
+
         static void sapxeptangdan(List<Xe> CarList)
         {
             var DanhSachVan = CarList.Where(s => s is Van).ToList();
             var sapxepvan = DanhSachVan.OrderBy(s => (s as Van).trongtaixe).ToList();
             XuatDanhSachVan(sapxepvan);
         }
+
+
+        //------------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Kiem Tra So Dep co trong cac bien so xe
+        /// </summary>
         static void sodep(List<Xe> CarList)
         {
-            /*    int count =0;
-                String temp;
-                var DanhSachXe = CarList.Where(s => s is Xe).ToList();
-                var SoSeri = DanhSachXe.Select(s => (s as Xe).seridangky).ToList();
-                for (int i = 0; i < SoSeri.Count; i++)
-                {
-                    temp = SoSeri[i].ToString();
-                    while (temp.Length > 0)
-                    {
-                        count = 0;
-                        for (int j = 0; j < temp.Length; j++)
-                        {
-                            if (temp[0] == temp[j])
-                            {
-                                count++;
-                            }
-                        }
-                        temp = temp.Replace(temp[0].ToString(), string.Empty);
-                        if (count >= 4)
-                        {
-                            foreach (Xe xe in CarList)
-                            {
-                                    if (xe.seridangky == SoSeri[i].ToString())
-                                {
-                                    xe.Xuat();
-                                }
-
-                            }
-                        }
-                    }
-                }
-            }*/
+           
             var bienSoXeDep1 = CarList.Where(v => v.seridangky.Count(c => c == v.seridangky[1]) >= 4).Select(v => v).ToList();
             foreach (var s in bienSoXeDep1)
             {
-                Console.WriteLine(s.matinh + " - " + s.seridangky);
+                Console.WriteLine(" " + s.matinh + " - " + s.seridangky + ",");
             }
         }
-        static void ThoiGianDangKiem(List<Xe> CarList)
+
+        //------------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Ham Tinh Tien Dang Kiem Dinh Ky cua cac loai xe tu truoc toi nay
+        /// </summary> 
+        static void TienThoiGianDangKiem(List<Xe> CarList)
         {
-            float tien = 0;
-            float ThoiGianDinhKy = 0;
+            var tien = 0;
             var danhsachxe = CarList.Where(s => s is Cars).ToList();
-            foreach (Cars car in danhsachxe)
-            {
-                var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
-                {
-                    if (totalmonths < 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == false)
-                    {
-
-                        ThoiGianDinhKy = 24;
-                    }
-
-                    if (totalmonths < 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == true)
-                    {
-                        ThoiGianDinhKy = 12;
-                    }
-
-                    if (totalmonths < 84 && car.sochongoi > 9)
-                    {
-                        ThoiGianDinhKy = 12;
-                    }
-                    else
-                    {
-                        ThoiGianDinhKy = 12;
-                    }
-                }
-
-            }
             var danhsachvan = CarList.Where(s => s is Van).ToList();
-            foreach (Van van in danhsachvan)
-            {
-                var totalmonths = (DateTime.Now.Month - van.ngaysanxuat.Month + 12 * (DateTime.Now.Year - van.ngaysanxuat.Year));
-                {
-                    if (totalmonths <= 240)
-                    {
-                        ThoiGianDinhKy = 6;
-                    }
-                    else
-                    {
-                        ThoiGianDinhKy = 6;
-                    }
-                }
-            }
-
+      // Tien cua Cars     
+     //------------------------------------------------------------------------------------------------------------------------
             foreach (Cars car in danhsachxe)
             {
                 var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
+       
                 if (car.sochongoi <= 10)
                 {
                     if (totalmonths <= 84)
                     {
-                        tien = ((totalmonths) / ThoiGianDinhKy) * 240000;
+                        tien = ((totalmonths) / ThoiGianDangKiemXeReturn(car) * 240000);
                     }
                     if (totalmonths > 84)
                     {
-                        tien = (84 / ThoiGianDinhKy)* 240000 +(((totalmonths - 84) / 6) *240000);
+                        tien = ((84 / ThoiGianDangKiemXeReturn(car)) * 240000) + (((totalmonths - 84) / 6) * 240000);
                     }
                     car.Xuat();
                     Console.Write("So tien:{0}", tien);
@@ -245,18 +218,269 @@ namespace Nhom11_ASM2._2
                 {
                     if (totalmonths <= 84)
                     {
-                        tien = (totalmonths / ThoiGianDinhKy) * 320000;
+                        tien = ((totalmonths / ThoiGianDangKiemXeReturn(car)) * 320000);
                     }
                     if (totalmonths > 84)
                     {
-                        tien = (84 / ThoiGianDinhKy) * 320000;
-                        tien = (tien + ((totalmonths - 84) / 6) * 320000);
+                        tien=(((84 / ThoiGianDangKiemXeReturn(car)) * 320000) + (((totalmonths - 84) / 6) * 320000));
                     }
                     car.Xuat();
                     Console.Write("So tien:{0}", tien);
                     tien = 0;
                 }
             }
+      //Tien cua Vans
+     //---------------------------------------------------------------------------------------------------------------------------------
+            foreach (Van van in danhsachvan)
+            {
+                var totalmonths = (DateTime.Now.Month - van.ngaysanxuat.Month + 12 * (DateTime.Now.Year - van.ngaysanxuat.Year));
+                if (van.trongtaixe > 20)
+                {
+                    if (totalmonths < 240)
+                    {
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 560000);
+                    }
+                    if (totalmonths > 240)
+                    {
+                        tien = ((totalmonths - 240) / ThoiGianKiemDinhVanReTurn(van) * 560000 + (((totalmonths - 240) / 3) * 560000));
+                    }
+                    van.Xuat(); Console.Write("So tien:{0}", tien);
+                    tien = 0;
+                }
+                if (van.trongtaixe < 20 && van.trongtaixe > 7)
+                {
+                    if (totalmonths < 240)
+                    {
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 350000);
+                    }
+                    if (totalmonths > 240)
+                    {
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 350000 + ((totalmonths - 240) / 3) * 350000);
+                    }
+                    van.Xuat();
+                    Console.Write("So tien:{0}", tien);
+                    tien = 0;
+                }
+                if (van.trongtaixe < 7)
+                {
+                    if (totalmonths < 240)
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 320000);
+                    if (totalmonths > 240)
+                    {
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 320000 + ((totalmonths - 240) / 3) * 320000);
+                    }
+                    van.Xuat();
+                    Console.Write("So tien:{0}", tien);
+                    tien = 0;
+                }
+            }
+        }
+
+        /// <summary>
+        //  Ham Tinh Thoi Gian Dang Kiem Cua Cac Xe
+        /// </summary> 
+        static void ThoiGianDangkiemDinhKySapToiCuaCars(List<Xe> CarList)
+        { 
+            var danhsachxe = CarList.Where(s => s is Cars).ToList();
+            var danhsachvan = CarList.Where(s => s is Van).ToList();
+            // Thoi Gian Dang Kiem Sap Toi Cua Cars
+            //------------------------------------------------------------------------------------------------------------------------
+            foreach (Cars car in danhsachxe)
+            {
+                 DateTime amongus;
+                int temp = 0, temp1 = 0 ;
+
+                Console.WriteLine();
+               
+                
+
+                int ThoiGianDangKiem = 0;
+                var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
+                
+                    if (totalmonths <= 84)
+                    {
+                        ThoiGianDangKiem = totalmonths + ThoiGianDangKiemXeReturn(car);
+                    }
+                    if (totalmonths > 84)
+                    {
+                    if (car.ngaysanxuat.Month + ThoiGianDangKiemXeReturn(car) < DateTime.Now.Month)
+                    {
+                        temp1 = totalmonths % ThoiGianDangKiemXeReturn(car);
+                        
+                    }  
+                       ThoiGianDangKiem = totalmonths  + ThoiGianDangKiemXeReturn(car) - temp1 * 12;
+                       // Console.WriteLine(ThoiGianDangKiem) ;//
+                      //  Console.WriteLine(temp);//
+
+                }
+                    car.Xuat();                  
+                   // Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiemXe);
+                    amongus = new DateTime(car.ngaysanxuat.Year, car.ngaysanxuat.Month, car.ngaysanxuat.Day ).AddMonths(ThoiGianDangKiem );
+                    Console.Write("Thoi gian dang kiem tiep theo : {0}", amongus);
+
+
+
+                /*DateTime amongus;
+
+                int b = car.ngaysanxuat.Month;
+                int a = car.ngaysanxuat.Day;
+                int c = car.ngaysanxuat.Year;
+
+                
+
+
+
+                while( c <= DateTime.Now.Year)
+                {
+                    if ( a >= DateTime.Now.Day && b >= DateTime.Now.Month  && c == DateTime.Now.Year )
+                    {
+                        break;
+                    }
+                    if ( b > DateTime.Now.Month && c > DateTime.Now.Year )
+                    {
+                        break;
+                    }
+                    b += ThoiGianDangKiemXeReturn(car);
+                    if ( b > 12 )
+                    {
+                        b -= 12;
+                        c++;
+                    }
+
+                              
+                }
+                Console.WriteLine(a);
+                Console.WriteLine(b);
+                Console.WriteLine(c);
+
+
+                
+                //Console.WriteLine(amongus);
+
+
+                */
+
+            }
+      // Thoi Gian Dag Kiem sap Toi cua Vans
+     //------------------------------------------------------------------------------------------------------------------------------------
+            foreach( Van van in danhsachvan)
+            {
+                DateTime amongus;
+                int ThoiGianDangKiem = 0;
+                var totalmonths = (DateTime.Now.Month - van.ngaysanxuat.Month + 12 * (DateTime.Now.Year - van.ngaysanxuat.Year));
+
+                ThoiGianDangKiem = totalmonths + ThoiGianKiemDinhVanReTurn(van);
+
+                van.Xuat();
+               // Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiem);
+                amongus = new DateTime(van.ngaysanxuat.Year, van.ngaysanxuat.Month, van.ngaysanxuat.Day).AddMonths(ThoiGianDangKiem);
+                Console.Write("Thoi gian dang kiem tiep theo : {0}",amongus);
+
+
+            }
+        }
+
+        /// <summary>
+        /// Chu Ky Dang Kiem Cua Cars
+        /// </summary>   
+        //------------------------------------------------------------------------------------------------------------------------
+        static int ThoiGianDangKiemXeReturn(Cars car)
+        {
+            int ThoiGianDinhKy = 0;
+            {
+                var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
+                {
+                    if (totalmonths <= 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == false)
+                    {
+
+                        ThoiGianDinhKy = 24;
+                    }
+
+                    if (totalmonths <= 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == true)
+                    {
+                        ThoiGianDinhKy = 12;
+                    }
+
+                    if (totalmonths <= 84 && car.sochongoi > 9)
+                    {
+                        ThoiGianDinhKy = 12;
+                    }
+                    else
+                    {
+                        ThoiGianDinhKy = 12;
+
+                    }
+                }
+
+                return ThoiGianDinhKy;
+            }
+       
+        }
+
+        /// <summary>
+        ///Chu Ki Dang Kiem cua van
+        /// </summary>
+        //------------------------------------------------------------------------------------------------------------------------
+        static int ThoiGianKiemDinhVanReTurn(Van van)
+        {
+            int ThoiGianDinhKy = 0;
+            var totalmonths = (DateTime.Now.Month - van.ngaysanxuat.Month + 12 * (DateTime.Now.Year - van.ngaysanxuat.Year));
+            {
+
+                if (totalmonths <= 240)
+                {
+                    ThoiGianDinhKy = 6;
+                }
+                else
+                {
+                    ThoiGianDinhKy = 6;
+                }
+            }
+            return ThoiGianDinhKy;
+        }
+        static void TongTien(List<Xe> CarList)
+        {
+            float tien = 0;
+            float tongtien = 0;
+            var danhsachxe = CarList.Where(s => s is Cars).ToList();
+            var danhsachvan = CarList.Where(s => s is Van).ToList();
+            // Tien cua Cars     
+            //------------------------------------------------------------------------------------------------------------------------
+            foreach (Cars car in danhsachxe)
+            {
+                var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
+
+                if (car.sochongoi <= 10)
+                {
+                    if (totalmonths <= 84)
+                    {
+                        tien = ((totalmonths) / ThoiGianDangKiemXeReturn(car) * 240000);
+                        tongtien = tongtien + tien;
+                    }
+                    if (totalmonths > 84)
+                    {
+                        tien = (84 / ThoiGianDangKiemXeReturn(car)) * 240000 + (((totalmonths - 84) / 6) * 240000);
+                        tongtien = tongtien + tien;
+                    }
+                    tien = 0;
+                }
+                if (car.sochongoi > 10)
+                {
+                    if (totalmonths <= 84)
+                    {
+                        tien = (totalmonths / ThoiGianDangKiemXeReturn(car)) * 320000;
+                        tongtien = tongtien + tien;
+                    }
+                    if (totalmonths > 84)
+                    {
+                        tien = (((84 / ThoiGianDangKiemXeReturn(car)) * 320000) + (((totalmonths - 84) / 6) * 320000));
+                        tongtien = tongtien + tien;
+                    }
+                    tien = 0;
+                }
+            }
+            //Tien cua Vans
+            //---------------------------------------------------------------------------------------------------------------------------------
             foreach (Van van in danhsachvan)
             {
                 var totalmonths = (DateTime.Now.Month - van.ngaysanxuat.Month + 12 * (DateTime.Now.Year - van.ngaysanxuat.Year));
@@ -264,46 +488,46 @@ namespace Nhom11_ASM2._2
                 {
                     if (totalmonths <= 240)
                     {
-                        tien = ((totalmonths) / ThoiGianDinhKy) * 560000;
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 560000);
+                        tongtien = tongtien + tien;
                     }
                     if (totalmonths > 240)
                     {
-                        tien = ((totalmonths-240) / ThoiGianDinhKy) * 560000 + (((totalmonths - 240) / 3) * 560000);
+                        tien = ((totalmonths - 240) / ThoiGianKiemDinhVanReTurn(van) * 560000 + (((totalmonths - 240) / 3) * 560000));
+                        tongtien = tongtien + tien;
                     }
-                    van.Xuat(); Console.Write("So tien:{0}", tien);
+                }
+                if (van.trongtaixe < 20 && van.trongtaixe > 7)
+                {
+                    if (totalmonths <= 240)
+                    {
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 350000);
+                        tongtien = tongtien + tien;
+                    }
+                    if (totalmonths > 240)
+                    {
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 350000 + ((totalmonths - 240) / 3) * 350000);
+                        tongtien = tongtien + tien;
+                    }
                     tien = 0;
                 }
-                if (van.trongtaixe <= 20 && van.trongtaixe > 7)
+                if (van.trongtaixe < 7)
                 {
-                    if(totalmonths <= 240)
-                    tien = ((totalmonths) / ThoiGianDinhKy) * 350000;
+                    if (totalmonths < 240)
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 320000);
+                    tongtien = tongtien + tien;
                     if (totalmonths > 240)
                     {
-                        tien = ((totalmonths) / ThoiGianDinhKy) * 350000 + ((totalmonths - 240) / 3) * 350000;
+                        tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van) * 320000 + ((totalmonths - 240) / 3) * 320000);
+                        tongtien = tongtien + tien;
                     }
-                    van.Xuat();
-                    Console.Write("So tien:{0}", tien);
-                    tien = 0;
-                }
-                if (van.trongtaixe <= 7)
-                {
-                    if(totalmonths<=240)
-                    tien = ((totalmonths) / ThoiGianDinhKy) * 320000;
-                    if (totalmonths > 240)
-                    {
-                        tien = ((totalmonths) / ThoiGianDinhKy) * 320000 + ((totalmonths - 240) / 3) * 320000;
-                    }
-                    van.Xuat();
-                    Console.Write("So tien:{0}", tien);
                     tien = 0;
                 }
             }
-        }
-        static void kiemtrathoigian(List<Xe> CarList)
-        {
-
+            Console.WriteLine("Tong tien thu duoc tu dinh ky la : {0}", tongtien);
         }
     }
+    
 }
 
     
