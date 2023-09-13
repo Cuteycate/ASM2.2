@@ -283,35 +283,45 @@ namespace Nhom11_ASM2._2
             //------------------------------------------------------------------------------------------------------------------------
             foreach (Cars car in danhsachxe)
             {
-                 DateTime amongus;
+                 DateTime amongus, amongus0;
                 int temp = 0, temp1 = 0 ;
 
                 Console.WriteLine();
-               
-                
-
+                            
                 int ThoiGianDangKiem = 0;
-                var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
-                
+                var totalmonths = ( DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
+                Console.WriteLine(totalmonths);
                     if (totalmonths <= 84)
                     {
                         ThoiGianDangKiem = totalmonths + ThoiGianDangKiemXeReturn(car);
-                    }
+                        Console.WriteLine(ThoiGianDangKiem);
+                      }
                     if (totalmonths > 84)
                     {
-                    if (car.ngaysanxuat.Month + ThoiGianDangKiemXeReturn(car) < DateTime.Now.Month)
-                    {
-                        temp1 = totalmonths % ThoiGianDangKiemXeReturn(car);
-                        
-                    }  
-                       ThoiGianDangKiem = totalmonths  + ThoiGianDangKiemXeReturn(car) - temp1 * 12;
-                        Console.WriteLine(ThoiGianDangKiem) ;
-                        Console.WriteLine(temp);
+                            temp1 = totalmonths % ThoiGianDangKiemXeReturn(car);
 
-                }
-                    car.Xuat();                  
-                   // Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiemXe);
-                    amongus = new DateTime(car.ngaysanxuat.Year, car.ngaysanxuat.Month, car.ngaysanxuat.Day ).AddMonths(ThoiGianDangKiem );
+                            Console.WriteLine(temp1);
+                            
+                            ThoiGianDangKiem = totalmonths  + ThoiGianDangKiemXeReturn(car) - temp1;
+                           
+
+                                         
+
+
+                            Console.WriteLine(ThoiGianDangKiem) ;
+                            Console.WriteLine(temp1);
+                        
+                    }
+
+              
+
+                car.Xuat();
+                // Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiemXe);
+                 
+
+
+                 amongus = new DateTime(car.ngaysanxuat.Year, car.ngaysanxuat.Month, car.ngaysanxuat.Day ).AddMonths(ThoiGianDangKiem); 
+                    
                     Console.WriteLine(amongus);
                        
                 
@@ -364,8 +374,11 @@ namespace Nhom11_ASM2._2
                 DateTime amongus;
                 int ThoiGianDangKiem = 0;
                 var totalmonths = (DateTime.Now.Month - van.ngaysanxuat.Month + 12 * (DateTime.Now.Year - van.ngaysanxuat.Year));
-
-                ThoiGianDangKiem = totalmonths + ThoiGianKiemDinhVanReTurn(van);
+                Console.WriteLine(totalmonths);
+                int temp1 = totalmonths % ThoiGianKiemDinhVanReTurn(van);
+                Console.WriteLine(temp1);
+                ThoiGianDangKiem = totalmonths + ThoiGianKiemDinhVanReTurn(van) - temp1;
+                Console.WriteLine(ThoiGianDangKiem);
 
                 van.Xuat();
                // Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiem);
@@ -384,7 +397,7 @@ namespace Nhom11_ASM2._2
         {
             int ThoiGianDinhKy = 1;
             {
-                var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
+                var totalmonths = (Math.Abs(DateTime.Now.Month - car.ngaysanxuat.Month) + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
                 {
                     if (totalmonths <= 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == false)
                     {
@@ -392,16 +405,17 @@ namespace Nhom11_ASM2._2
                         ThoiGianDinhKy = 24;
                     }
 
-                    if (totalmonths <= 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == true)
+                    else if (totalmonths <= 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == true)
                     {
                         ThoiGianDinhKy = 12;
                     }
 
-                    if (totalmonths <= 84 && car.sochongoi > 9)
+                    else if (totalmonths <= 84 && car.sochongoi > 9)
                     {
                         ThoiGianDinhKy = 12;
                     }
                     else
+                    
                     {
                         ThoiGianDinhKy = 12;
 
