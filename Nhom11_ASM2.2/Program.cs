@@ -211,9 +211,9 @@ namespace Nhom11_ASM2._2
             var danhsachvan = CarList.Where(s => s is Van).ToList();
             foreach (Van van in danhsachvan)
             {
-                DateTime date1 = van.ngaysanxuat.AddYears(20);
+                var totalmonths = (DateTime.Now.Month - van.ngaysanxuat.Month + 12 * (DateTime.Now.Year - van.ngaysanxuat.Year));
                 {
-                    if (date1 <= DateTime.Now)
+                    if (totalmonths <= 240)
                     {
                         ThoiGianDinhKy = 6;
                     }
@@ -229,7 +229,7 @@ namespace Nhom11_ASM2._2
                 var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
                 if (car.sochongoi <= 10)
                 {
-                    if (totalmonths < 84)
+                    if (totalmonths <= 84)
                     {
                         tien = ((totalmonths) / ThoiGianDinhKy) * 240000;
                     }
@@ -243,7 +243,7 @@ namespace Nhom11_ASM2._2
                 }
                 if (car.sochongoi > 10)
                 {
-                    if (totalmonths < 84)
+                    if (totalmonths <= 84)
                     {
                         tien = (totalmonths / ThoiGianDinhKy) * 320000;
                     }
@@ -262,7 +262,7 @@ namespace Nhom11_ASM2._2
                 var totalmonths = (DateTime.Now.Month - van.ngaysanxuat.Month + 12 * (DateTime.Now.Year - van.ngaysanxuat.Year));
                 if (van.trongtaixe > 20)
                 {
-                    if (totalmonths < 240)
+                    if (totalmonths <= 240)
                     {
                         tien = ((totalmonths) / ThoiGianDinhKy) * 560000;
                     }
@@ -273,9 +273,9 @@ namespace Nhom11_ASM2._2
                     van.Xuat(); Console.Write("So tien:{0}", tien);
                     tien = 0;
                 }
-                if (van.trongtaixe < 20 && van.trongtaixe > 7)
+                if (van.trongtaixe <= 20 && van.trongtaixe > 7)
                 {
-                    if(totalmonths < 240)
+                    if(totalmonths <= 240)
                     tien = ((totalmonths) / ThoiGianDinhKy) * 350000;
                     if (totalmonths > 240)
                     {
@@ -285,9 +285,9 @@ namespace Nhom11_ASM2._2
                     Console.Write("So tien:{0}", tien);
                     tien = 0;
                 }
-                if (van.trongtaixe < 7)
+                if (van.trongtaixe <= 7)
                 {
-                    if(totalmonths<240)
+                    if(totalmonths<=240)
                     tien = ((totalmonths) / ThoiGianDinhKy) * 320000;
                     if (totalmonths > 240)
                     {
