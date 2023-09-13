@@ -296,7 +296,7 @@ namespace Nhom11_ASM2._2
                     }
                     if (totalmonths > 84)
                     {
-                        ThoiGianDangKiem = 84 + (totalmonths - 84) + ThoiGianDangKiemXeReturn(car) ;
+                        ThoiGianDangKiem = 84 + (totalmonths - 84) + ThoiGianDangKiemXeReturn(car ) ;
                     }
                     car.Xuat();                  
                     Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiem);
