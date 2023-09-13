@@ -5,3 +5,10 @@ C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.csproj.A
 C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.exe
 C:\Users\Admin\Desktop\New folder\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.pdb
+D:\Kien\Kien_LTWindow\V1.5\ASM2.2\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.csproj.AssemblyReference.cache
+D:\Kien\Kien_LTWindow\V1.5\ASM2.2\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.csproj.CoreCompileInputs.cache
+D:\Kien\Kien_LTWindow\V1.5\ASM2.2\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.exe
+D:\Kien\Kien_LTWindow\V1.5\ASM2.2\Nhom11_ASM2.2\obj\Debug\Nhom11_ASM2.2.pdb
+D:\Kien\Kien_LTWindow\V1.5\ASM2.2\Nhom11_ASM2.2\bin\Debug\Nhom11_ASM2.2.exe.config
+D:\Kien\Kien_LTWindow\V1.5\ASM2.2\Nhom11_ASM2.2\bin\Debug\Nhom11_ASM2.2.exe
+D:\Kien\Kien_LTWindow\V1.5\ASM2.2\Nhom11_ASM2.2\bin\Debug\Nhom11_ASM2.2.pdb
