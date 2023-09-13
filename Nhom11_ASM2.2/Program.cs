@@ -279,14 +279,17 @@ namespace Nhom11_ASM2._2
         { 
             var danhsachxe = CarList.Where(s => s is Cars).ToList();
             var danhsachvan = CarList.Where(s => s is Van).ToList();
-     // Thoi Gian Dang Kiem Sap Toi Cua Cars
-     //------------------------------------------------------------------------------------------------------------------------
+            // Thoi Gian Dang Kiem Sap Toi Cua Cars
+            //------------------------------------------------------------------------------------------------------------------------
             foreach (Cars car in danhsachxe)
             {
-                DateTime amongus;
-              
+                 DateTime amongus;
+                int temp = 0, temp1 = 0 ;
+
                 Console.WriteLine();
                
+                
+
                 int ThoiGianDangKiem = 0;
                 var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
                 
@@ -296,12 +299,63 @@ namespace Nhom11_ASM2._2
                     }
                     if (totalmonths > 84)
                     {
-                        ThoiGianDangKiem = 84 + (totalmonths - 84) + ThoiGianDangKiemXeReturn(car ) ;
-                    }
+                    if (car.ngaysanxuat.Month + ThoiGianDangKiemXeReturn(car) < DateTime.Now.Month)
+                    {
+                        temp1 = totalmonths % ThoiGianDangKiemXeReturn(car);
+                        
+                    }  
+                       ThoiGianDangKiem = totalmonths  + ThoiGianDangKiemXeReturn(car) - temp1 * 12;
+                        Console.WriteLine(ThoiGianDangKiem) ;
+                        Console.WriteLine(temp);
+
+                }
                     car.Xuat();                  
-                    Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiem);
-                    amongus = new DateTime(car.ngaysanxuat.Year, car.ngaysanxuat.Month, car.ngaysanxuat.Day ).AddMonths(ThoiGianDangKiem);
-                    Console.WriteLine(amongus);                                              
+                   // Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiemXe);
+                    amongus = new DateTime(car.ngaysanxuat.Year, car.ngaysanxuat.Month, car.ngaysanxuat.Day ).AddMonths(ThoiGianDangKiem );
+                    Console.WriteLine(amongus);
+                       
+                
+                
+                /*DateTime amongus;
+
+                int b = car.ngaysanxuat.Month;
+                int a = car.ngaysanxuat.Day;
+                int c = car.ngaysanxuat.Year;
+
+                
+
+
+
+                while( c <= DateTime.Now.Year)
+                {
+                    if ( a >= DateTime.Now.Day && b >= DateTime.Now.Month  && c == DateTime.Now.Year )
+                    {
+                        break;
+                    }
+                    if ( b > DateTime.Now.Month && c > DateTime.Now.Year )
+                    {
+                        break;
+                    }
+                    b += ThoiGianDangKiemXeReturn(car);
+                    if ( b > 12 )
+                    {
+                        b -= 12;
+                        c++;
+                    }
+
+                              
+                }
+                Console.WriteLine(a);
+                Console.WriteLine(b);
+                Console.WriteLine(c);
+
+
+                
+                //Console.WriteLine(amongus);
+
+
+                */
+
             }
       // Thoi Gian Dag Kiem sap Toi cua Vans
      //------------------------------------------------------------------------------------------------------------------------------------
@@ -314,7 +368,7 @@ namespace Nhom11_ASM2._2
                 ThoiGianDangKiem = totalmonths + ThoiGianKiemDinhVanReTurn(van);
 
                 van.Xuat();
-                Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiem);
+               // Console.Write("Thoi Gian Dang Kiem cua Xe Sap Toi:{0}\n", ThoiGianDangKiem);
                 amongus = new DateTime(van.ngaysanxuat.Year, van.ngaysanxuat.Month, van.ngaysanxuat.Day).AddMonths(ThoiGianDangKiem);
                 Console.WriteLine(amongus);
 
@@ -332,24 +386,25 @@ namespace Nhom11_ASM2._2
             {
                 var totalmonths = (DateTime.Now.Month - car.ngaysanxuat.Month + 12 * (DateTime.Now.Year - car.ngaysanxuat.Year));
                 {
-                    if (totalmonths < 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == false)
+                    if (totalmonths <= 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == false)
                     {
 
                         ThoiGianDinhKy = 24;
                     }
 
-                    if (totalmonths < 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == true)
+                    if (totalmonths <= 84 && car.sochongoi <= 9 && car.kinhdoanhvantai == true)
                     {
                         ThoiGianDinhKy = 12;
                     }
 
-                    if (totalmonths < 84 && car.sochongoi > 9)
+                    if (totalmonths <= 84 && car.sochongoi > 9)
                     {
                         ThoiGianDinhKy = 12;
                     }
                     else
                     {
                         ThoiGianDinhKy = 12;
+
                     }
                     if ( totalmonths > 84)
                     {
