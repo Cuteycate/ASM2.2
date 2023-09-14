@@ -54,10 +54,13 @@ namespace Nhom11_ASM2._2
                         sodep(CarList); 
                         break;
                     case "7":
-                        xuattien(CarList);
+                        TienThoiGianDangKiem(CarList);
                         break;
                     case "8":
                         ThoiGianDangkiemDinhKySapToiCuaCars(CarList);
+                        break;
+                    case "9":
+                        TongTienThoiGianDangKiem(CarList);
                         break;
                     case "0":
                         exit = true;
@@ -185,7 +188,7 @@ namespace Nhom11_ASM2._2
         /// <summary>
         /// Ham Tinh Tien Dang Kiem Dinh Ky cua cac loai xe tu truoc toi nay
         /// </summary> 
-        static double TienThoiGianDangKiem(List<Xe> CarList)
+        static void TienThoiGianDangKiem(List<Xe> CarList)
         {
             double tien = 0;
             var danhsachxe = CarList.Where(s => s is Cars).ToList();
@@ -202,27 +205,29 @@ namespace Nhom11_ASM2._2
                     if (totalmonths <= 84)
                     {
                         tien = ((totalmonths) / ThoiGianDangKiemXeReturn(car,totalmonths) * 240000);
-                        return tien;
                     }
                     if (totalmonths > 84)
                     {
                         tien = (84 / ThoiGianDangKiemXeReturn(car, temp)) * 240000 + (((temp) / ThoiGianDangKiemXeReturn(car, totalmonths) * 240000));
-                        return tien;
                     }
+                    car.Xuat();
+                    Console.Write("Tien dang kiem cua xe la : {0}", tien);
+                    tien = 0;
                 }
                 if (car.sochongoi > 10)
                 {
                     if (totalmonths < 84)
                     {
                         tien = (totalmonths / ThoiGianDangKiemXeReturn(car, totalmonths)) * 320000;
-                        return tien;
                     }
                     if (totalmonths > 84)
                     {
                         tien = (84 / ThoiGianDangKiemXeReturn(car,temp)) * 320000;
                         tien = (tien + ((temp) / ThoiGianDangKiemXeReturn(car,totalmonths) * 320000));
-                        return tien;
                     }
+                    car.Xuat();
+                    Console.Write("Tien dang kiem cua xe la : {0}", tien);
+                    tien = 0;
                 }
             }
       //Tien cua Vans
@@ -236,43 +241,44 @@ namespace Nhom11_ASM2._2
                     if (totalmonths <= 240)
                     {
                         tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van,totalmonths) * 560000);
-                        return tien;
                     }
                     if (totalmonths > 240)
                     {
                         tien = (240) / ThoiGianKiemDinhVanReTurn(van,temp) * 560000 + (((temp) / ThoiGianKiemDinhVanReTurn(van,totalmonths) * 560000));
-                        return tien;
                     }
+                    van.Xuat();
+                    Console.Write("Tien dang kiem cua xe la : {0}", tien);
+                    tien = 0;
                 }
                 if (van.trongtaixe <= 20 && van.trongtaixe > 7)
                 {
                     if (totalmonths <= 240)
                     {
                         tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van, totalmonths) * 350000);
-                        return tien;
                     }
-
                     if (totalmonths > 240)
                     {
                         tien = ((240) / ThoiGianKiemDinhVanReTurn(van,temp) * 350000 + ((temp) / ThoiGianKiemDinhVanReTurn(van,totalmonths) * 350000));
-                        return tien;
                     }
+                    van.Xuat();
+                    Console.Write("Tien dang kiem cua xe la : {0}", tien);
+                    tien = 0;
                 }
                 if (van.trongtaixe <= 7)
                 {
                     if (totalmonths <= 240)
                     {
                         tien = ((totalmonths) / ThoiGianKiemDinhVanReTurn(van, totalmonths) * 320000);
-                        return tien;
                     }
                     if (totalmonths > 240)
                     {
                         tien = ((240) / ThoiGianKiemDinhVanReTurn(van,temp) * 320000 + (temp) / ThoiGianKiemDinhVanReTurn(van,temp) * 320000);
-                        return tien;
                     }
+                    van.Xuat();
+                    Console.Write("Tien dang kiem cua xe la : {0}", tien);
+                    tien = 0;
                 }
             }
-            return tien;
         }
 
         /// <summary>
@@ -499,14 +505,6 @@ namespace Nhom11_ASM2._2
                     }
                 }
                 Console.WriteLine("Tong tien thu duoc la : {0}", tongtien);
-            }
-        }
-        static void xuattien(List<Xe> CarList)
-        {
-            foreach (Cars car in CarList)
-            {
-                car.Xuat();
-                Console.WriteLine("tien la : {0}", TienThoiGianDangKiem(CarList));
             }
         }
     }
