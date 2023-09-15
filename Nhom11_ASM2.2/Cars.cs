@@ -26,12 +26,13 @@ namespace Nhom11_ASM2._2
         public void NhapCar()
         {
             base.Nhap();
-            Console.Write("Nhap so cho ngoi cua xe:");
+            Console.Write(" - Nhap so cho ngoi cua xe: ");
             sochongoi = Convert.ToInt32(Console.ReadLine());
             int choice;
             do
             {
-                Console.Write("Co dang ky kinh doanh van tai hay khong ? (0 (khong) hoac 1 (co)");
+                Console.WriteLine(" - Co dang ky kinh doanh van tai hay khong ?" );
+                Console.Write("      Chon 1 La Co - Chon 0 la Khong, Chon: ");
                 choice = Convert.ToInt32(Console.ReadLine());
                 {
                     if (choice == 0)
@@ -47,7 +48,7 @@ namespace Nhom11_ASM2._2
         }
         public override void Xuat()
         {
-            base.Xuat(); Console.Write("\t so cho ngoi {0}\t kdvt : {1}\n", sochongoi, kinhdoanhvantai);
+            base.Xuat(); Console.Write("\t So cho ngoi: {0}   cho  Kdvt : {1}  |\n", sochongoi, kinhdoanhvantai);
         }
     }
 }
